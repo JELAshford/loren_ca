@@ -58,6 +58,10 @@ with VideoWriter("out/video.mp4", (SHOW_SIZE, SHOW_SIZE), fps=60) as writer:
 
 
 # Show final state
-plt.imshow(grid, cmap="gray")
-plt.savefig("out/final_state.png", dpi=200)
+fig, ax = plt.subplots(1, 1, figsize=(10, 10))
+ax.imshow(grid, cmap="gray")
+ax.set_xticks([])
+ax.set_yticks([])
+plt.tight_layout()
+plt.savefig("out/final_state.png", dpi=200, bbox_inches="tight")
 plt.close()
