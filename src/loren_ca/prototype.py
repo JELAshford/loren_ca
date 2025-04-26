@@ -6,7 +6,7 @@ import matplotlib.pylab as plt
 import numpy as np
 
 
-SEED = 1701
+SEED = 200
 STEPS = 500
 SIZE = 200
 SHOW_SIZE = 800
@@ -27,26 +27,28 @@ diag_kernel = [
 
 
 # Setup state
-rules = np.array(
-    [
-        [2, 2, 2, 2, 0],
-        [2, 1, 0, 0, 0],
-        [1, 1, 0, 2, 0],
-        [0, 2, 1, 0, 1],
-        [2, 2, 2, 2, 0],
-    ],
-    dtype=np.uint8,
-)
+# rules = np.array(
+#     [
+#         [2, 2, 2, 2, 0],
+#         [2, 1, 0, 0, 0],
+#         [1, 1, 0, 2, 0],
+#         [0, 2, 1, 0, 1],
+#         [2, 2, 2, 2, 0],
+#     ],
+#     dtype=np.uint8,
+# )
 rng = np.random.default_rng(SEED)
+rules = rng.integers(0, 3, size=(5, 5), dtype=np.uint8)
 grid = rng.integers(0, 2, size=(SIZE, SIZE), dtype=np.uint8)
 
-
 # Apply rules and save to video
-with VideoWriter("out/video.mp4", (SHOW_SIZE, SHOW_SIZE), fps=60) as writer:
+with VideoWriter(
+    f"out/random_searches/{SEED}_video.mp4", (SHOW_SIZE, SHOW_SIZE), fps=60
+) as writer:
     for step in range(STEPS):
         # Count neighbour (orthog and diagonal)
-        orthog_counts = convolve2d(grid, orthog_kernel, mode="same")
-        diag_counts = convolve2d(grid, diag_kernel, mode="same")
+        orthog_counts = convolve2d(grid, orthog_kernel, mode="same", boundary="wrap")
+        diag_counts = convolve2d(grid, diag_kernel, mode="same", boundary="wrap")
         # Set new state based on counts/rules
         new_grid = rules[orthog_counts, diag_counts]
         new_grid[new_grid == 2] = grid[new_grid == 2]
@@ -56,12 +58,11 @@ with VideoWriter("out/video.mp4", (SHOW_SIZE, SHOW_SIZE), fps=60) as writer:
         show_grid = np.kron(new_grid, np.ones((SHOW_SCALE, SHOW_SCALE))) * 255
         writer.add_image(show_grid)
 
-
 # Show final state
 fig, ax = plt.subplots(1, 1, figsize=(10, 10))
 ax.imshow(grid, cmap="gray")
 ax.set_xticks([])
 ax.set_yticks([])
 plt.tight_layout()
-plt.savefig("out/final_state.png", dpi=200, bbox_inches="tight")
+plt.savefig(f"out/random_searches/{SEED}_final_state.png", dpi=200, bbox_inches="tight")
 plt.close()
