@@ -340,6 +340,7 @@ source = { editable = "." }
 dependencies = [
     { name = "ipykernel" },
     { name = "matplotlib" },
+    { name = "mediapy" },
     { name = "numpy" },
     { name = "scipy" },
 ]
@@ -348,6 +349,7 @@ dependencies = [
 requires-dist = [
     { name = "ipykernel", specifier = ">=6.29.5" },
     { name = "matplotlib", specifier = ">=3.10.1" },
+    { name = "mediapy", specifier = ">=1.2.3" },
     { name = "numpy", specifier = ">=2.2.5" },
     { name = "scipy", specifier = ">=1.15.2" },
 ]
@@ -399,6 +401,21 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/99/5b/a36a337438a14116b16480db471ad061c36c3694df7c2084a0da7ba538b7/matplotlib_inline-0.1.7.tar.gz", hash = "sha256:8423b23ec666be3d16e16b60bdd8ac4e86e840ebd1dd11a30b9f117f2fa0ab90", size = 8159 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/8f/8e/9ad090d3553c280a8060fbf6e24dc1c0c29704ee7d1c372f0c174aa59285/matplotlib_inline-0.1.7-py3-none-any.whl", hash = "sha256:df192d39a4ff8f21b1895d72e6a13f5fcc5099f00fa84384e0ea28c2cc0653ca", size = 9899 },
+]
+
+[[package]]
+name = "mediapy"
+version = "1.2.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "ipython" },
+    { name = "matplotlib" },
+    { name = "numpy" },
+    { name = "pillow" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/f7/f4/46902ebfa7d177e7f93816a2265a0c59305200d85d4d7687da3b472d39a8/mediapy-1.2.3.tar.gz", hash = "sha256:bc3b79c1767a3ac0926f34a19be32cf63843e61ddb32f05e3173b198beb9b3b2", size = 26625 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f2/e9/1dd3f33ee8cab8107366c4b8610c6cd36499ef096b88a535e05e70612269/mediapy-1.2.3-py3-none-any.whl", hash = "sha256:d7d185dcdd72a6dfed7e1b9a8e73731ca763488086afca210107f0f48ba65c4b", size = 26094 },
 ]
 
 [[package]]
