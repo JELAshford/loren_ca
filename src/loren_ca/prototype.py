@@ -6,7 +6,7 @@ import matplotlib.pylab as plt
 import numpy as np
 
 
-SEED = 200
+SEED = 82345
 STEPS = 500
 SIZE = 200
 SHOW_SIZE = 800
@@ -39,6 +39,9 @@ diag_kernel = [
 # )
 rng = np.random.default_rng(SEED)
 rules = rng.integers(0, 3, size=(5, 5), dtype=np.uint8)
+
+# grid = np.zeros(shape=(SIZE, SIZE), dtype=np.uint8)
+# grid[75:125, 75:125] = rng.integers(0, 2, size=(50, 50), dtype=np.uint8)
 grid = rng.integers(0, 2, size=(SIZE, SIZE), dtype=np.uint8)
 
 # Apply rules and save to video
